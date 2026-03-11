@@ -1,23 +1,21 @@
-
 import {
   RPProvider,
-  RPDefaultLayout,
+  RPLayout,
   RPPages,
-} from "@pdf-viewer/react";
+} from "@react-pdf-kit/viewer";
 
-const DEFAULT_PDF_URL = "https://cdn.codewithmosh.com/image/upload/v1721763853/guides/web-roadmap.pdf"
-const AppPdfViewer = (props) => {
+export const AppPdfViewer = (props) => {
   const { showToolbar = true, providerProps, defaultLayoutProps } = props;
 
   return (
     <RPProvider
-      src={DEFAULT_PDF_URL}
+      src="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf"
       {...providerProps}
     >
       {showToolbar ? (
-        <RPDefaultLayout {...defaultLayoutProps}>
+        <RPLayout toolbar {...defaultLayoutProps}>
           <RPPages />
-        </RPDefaultLayout>
+        </RPLayout>
       ) : (
         <div style={{ width: "100%", height: "550px" }}>
           <RPPages />
@@ -26,5 +24,3 @@ const AppPdfViewer = (props) => {
     </RPProvider>
   );
 };
-
-export default AppPdfViewer

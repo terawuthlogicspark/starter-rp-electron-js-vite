@@ -1,6 +1,8 @@
-# React PDF Starter Toolkit in React, Electron, JavaScript and Vite
+# React PDF Kit Starter Toolkit in React.js, JavaScript, Electron and Vite
 
-Welcome to the React PDF Starter Toolkit! This repository provides a comprehensive guide on integrating React PDF with React, Electron, JavaScript and Vite. It showcases how React PDF can be integrated and rendered as part of a React.js project.
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github.com/react-pdf-kit/starter-rp-electron-js-vite)
+
+Welcome to the React PDF Kit Starter Toolkit! This repository provides a comprehensive guide on integrating React PDF with React, JavaScript, Electron and Vite. It showcases the React PDF Viewer component can be integrated and rendered as part of a React.js project.
 
 ## Table of Contents
 
@@ -16,8 +18,8 @@ Welcome to the React PDF Starter Toolkit! This repository provides a comprehensi
 1. **Clone the Repository**: If you haven't already, clone the repository and navigate into the project directory.
 
    ```bash
-   git clone https://github.com/pdf-viewer-react/starter-rp-electron-js.git
-   cd starter-rp-electron-js
+   git clone https://github.com/react-pdf-kit/starter-rp-electron-js-vite.git
+   cd starter-rp-electron-js-vite
    ```
 
 2. **Install Dependencies**: Install the necessary dependencies using npm, yarn, pnpm or bun.
@@ -34,11 +36,11 @@ Welcome to the React PDF Starter Toolkit! This repository provides a comprehensi
 
 ### Running the Example Project
 
-This repository includes an example project to demonstrate React PDF in action.
+This repository includes an example project to demonstrate the React PDF Kit in action.
 
-1. **Start the Development Server and electron**: Use the following command to start the development server
+1. **Start the Development Server and Electron**: Use the following command to start the development server and Electron
 
-```bash
+   ```bash
    npm run dev
    # or
    yarn dev
@@ -47,7 +49,8 @@ This repository includes an example project to demonstrate React PDF in action.
    # or
    bun run dev
    ```
-By default, the dev server runs on `http://localhost:5173`.
+
+   By default, the dev server runs on `http://localhost:5173`.
 
 ### Using the React PDF Component
 
@@ -58,26 +61,25 @@ Once the example project is running, you can explore the source code to see how 
 ```jsx
 import {
   RPProvider,
-  RPDefaultLayout,
+  RPLayout,
   RPPages,
-} from "@pdf-viewer/react";
+} from "@react-pdf-kit/viewer";
 
-const DEFAULT_PDF_URL = "https://cdn.codewithmosh.com/image/upload/v1721763853/guides/web-roadmap.pdf"
-const AppPdfViewer = (props) => {
+export const AppPdfViewer = (props) => {
   const { showToolbar = true, providerProps, defaultLayoutProps } = props;
 
   return (
     <RPProvider
-      src={DEFAULT_PDF_URL}
+      src="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf"
       {...providerProps}
     >
       {showToolbar ? (
-        <RPDefaultLayout {...defaultLayoutProps}>
+        <RPLayout toolbar {...defaultLayoutProps}>
           <RPPages />
-        </RPDefaultLayout>
+        </RPLayout>
       ) : (
         <div style={{ width: "100%", height: "550px" }}>
-          <RPPages />
+          <RPPages/>
         </div>
       )}
     </RPProvider>
@@ -85,43 +87,40 @@ const AppPdfViewer = (props) => {
 };
 ```
 
-2. **Use the component in the page**: Add the React PDF component to your page
+2. **Use the component in the template**: Add the React PDF component to your template section
 
 ```jsx
 import "./App.css";
-import React from "react";
-import { RPConfig } from "@pdf-viewer/react";
-import { LazyAppPdfViewer } from "./components/LazyAppPdfViewer";
+import { RPConfig } from "@react-pdf-kit/viewer";
+import { AppPdfViewer } from "./components/AppPdfViewer";
 
 function App() {
   return (
-    <>
-      <React.Suspense fallback={<div />}>
-        <RPConfig>
-          <div className="container">
-            <h1>RP Starter Toolkit: React vite + JavaScript | Electron</h1>
-            <br />
-            <h2>Default Toolbar</h2>
-            <LazyAppPdfViewer />
-            <h2>Without Toolbar</h2>
-            <LazyAppPdfViewer
-              showToolbar={false}
-              defaultLayoutProps={{
-                style: { width: "100%", height: "550px" },
-              }}
-            />
-            <h2>Mobile</h2>
-            <LazyAppPdfViewer
-              defaultLayoutProps={{
-                style: { width: "500px" },
-              }}
-            />
-          </div>
-        </RPConfig>
-      </React.Suspense>
-    </>
+    <RPConfig licenseKey="">
+      <div className="container">
+        <h1>React PDF Kit Starter Toolkit in React.js, JavaScript and Vite</h1>
+        <br />
+        <h2>Default Toolbar</h2>
+        <AppPdfViewer />
+        <h2>Without Toolbar</h2>
+        <AppPdfViewer
+          showToolbar={false}
+          defaultLayoutProps={{
+            style: { width: "100%", height: "550px" },
+          }}
+        />
+        <h2>Mobile</h2>
+        <AppPdfViewer
+          defaultLayoutProps={{
+            style: { width: "500px" },
+          }}
+        />
+      </div>
+    </RPConfig>
   );
 }
+
+export default App;
 ```
 
 ## Examples
@@ -134,13 +133,12 @@ For more examples, please refer to the `src/App.jsx` file in this repository:
 
 _Remark: If you would like more examples, feel free open an issue._
 
-For more configurations, please check the [documentation](https://docs.react-pdf.dev) site.
+For more configurations, please check the [documentation](https://docs.react-pdf-kit.dev) site.
 
 ## Meta
-
-- Homepage: [https://www.react-pdf.dev](https://www.react-pdf.dev)
-- Docs: [https://docs.react-pdf.dev](https://docs.react-pdf.dev)
+- Homepage: [https://www.react-pdf-kit.dev](https://www.react-pdf-kit.dev)
+- Docs: [https://docs.react-pdf-kit.dev](https://docs.react-pdf-kit.dev)
 
 ---
 
-Thank you for using React PDF! We hope this toolkit helps you build amazing React.js applications. If you have any questions or need further assistance on this example, please feel free to open an issue. Happy coding!
+Thank you for using React PDF Kit! We hope this toolkit helps you build amazing React.js applications. If you have any questions or need further assistance on this example, please feel free to open an issue. Happy coding!
